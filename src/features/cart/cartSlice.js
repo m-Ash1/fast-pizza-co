@@ -27,9 +27,7 @@ const cartSlice = createSlice({
         (item) => item.pizzaId === action.payload,
       );
       if (item.quantity === 1) {
-        state.shoppingCart = state.shoppingCart.filter(
-          (pizza) => pizza.pizzaId !== action.payload,
-        );
+        cartSlice.caseReducers.deleteItem(state, action);
       } else {
         item.quantity--;
         item.totalPrice = item.quantity * item.unitPrice;
