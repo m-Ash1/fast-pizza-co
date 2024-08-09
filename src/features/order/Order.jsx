@@ -31,8 +31,10 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
   return (
     <div className="space-y-8 px-4 py-6">
-      <div className="flex flex-wrap items-center justify-between">
-        <h2 className="text-xl font-semibold">Order #{id} status</h2>
+      <div className="flex flex-col items-center justify-between sm:flex-row">
+        <h2 className="mb-2 text-xl font-semibold sm:mb-0">
+          Order #{id} status
+        </h2>
         <div className="space-x-2">
           {priority && (
             <span className="rounded-full bg-red-500 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-red-50">
@@ -45,7 +47,7 @@ function Order() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between bg-stone-200 px-6 py-5">
+      <div className="flex flex-col items-center justify-between bg-stone-200 px-6 py-5 sm:flex-row">
         <p className="font-medium">
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
@@ -63,7 +65,10 @@ function Order() {
               key={item.pizzaId}
               item={item}
               isLoadingIngredients={fetcher.state === "loading"}
-              ingredients={fetcher?.data?.find((el)=>el.id === item.pizzaId)?.ingredients ?? []}
+              ingredients={
+                fetcher?.data?.find((el) => el.id === item.pizzaId)
+                  ?.ingredients ?? []
+              }
             />
           );
         })}
